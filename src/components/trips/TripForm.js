@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { statesApi, tripsApi, usersApi } from '../apiManager'
+import { statesApi, tripsApi } from '../apiManager'
 
 
-export const TripForm = ({}) => {
+export const TripForm = () => {
     const [unitedStates, setUnitedStates] = useState([])
     const [startDate, setStartDate] = useState("")
     const [startTime, setStartTime] = useState("")
@@ -12,7 +12,6 @@ export const TripForm = ({}) => {
     const [state, setState] = useState ("")
     const [city, setCity] = useState("")
     const [waterSystem, setWaterSystem] = useState("")
-    const [displayTrip, setDisplay] = useState("true")
     const [tripPlan, setPlan] = useState("")
     const navigate = useNavigate()
   
@@ -40,7 +39,6 @@ export const TripForm = ({}) => {
         city : city,
         waterSystem : waterSystem,
         plan : tripPlan,
-        public : displayTrip
       }
       fetch(tripsApi, {
         method: "POST",
@@ -83,36 +81,35 @@ export const TripForm = ({}) => {
         <fieldset>
           <h3>Location</h3>
           <div className="locationContainer">
-            <label> State </label>
-            <select 
-              required
-              onChange={(e) => {setState(e.target.value)}}>
-              <option value="">Select a state</option>
-              {unitedStates.map((state) => {
-                return <option key={state}> {state} </option>
-              })}
-            </select>
-            <label htmlFor="city"> City </label>
-            <input type="text" name="city" max={100} placeholder="City" onChange={(e) => {setCity(e.target.value)}}></input>
-            <label> Water System </label>
-            <input type="text" placeholder="Water system" onChange={(e) => {setWaterSystem(e.target.value)}}></input>
+            <div className="stateContainer">
+                <p> State </p>
+                <select 
+                required
+                onChange={(e) => {setState(e.target.value)}}>
+                <option value="">Select a state</option>
+                {unitedStates.map((state) => {
+                    return <option key={state}> {state} </option>
+                })}
+                </select>
+            </div>
+            <div className="cityContainer">
+                <p> City </p>
+                <input type="text" name="city" max={100} placeholder="City" onChange={(e) => {setCity(e.target.value)}}></input>
+            </div>
+            <div className="waterSystemContainer">
+                <p> Water System </p>
+                <input type="text" placeholder="Water system" onChange={(e) => {setWaterSystem(e.target.value)}}></input>
+            </div>
           </div>
         </fieldset>
         <fieldset>
           <h3>Details</h3>
-          {
-                  displayTrip === "true" ? (<>Set Location Display Public<input name="location" checked type="checkbox" onChange={(e) => {if (e.target.checked) {setDisplay("true")} else {setDisplay("false")}}}></input></>)
-                  : (<>Set Location Display Public<input name="location" type="checkbox" onChange={(e) => {if (e.target.checked) {setDisplay("true")} else {setDisplay("false")}}}></input></>)
-                }
-          <div className="planContainer">
-            <label htmlFor="plan"> Plan </label>
-            <textarea type="text"
-                  className="tripPlan"
-                  placeholder="Trip plan"
-                  maxLength="1000"
-                  onChange={(e) => {setPlan(e.target.value)}}
-            />
-          </div>
+          <textarea type="text"
+            className="tripPlan"
+            placeholder="Trip plan"
+            maxLength="1000"
+            onChange={(e) => {setPlan(e.target.value)}}
+          />
         </fieldset>
         <fieldset>
               <button type="submit">Submit Trip</button>

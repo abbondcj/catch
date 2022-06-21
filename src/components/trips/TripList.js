@@ -5,6 +5,7 @@ export const TripList = () => {
   console.log("TripList rendered")
   const [trips, getTrips] = useState([])
   const [participants, getParticipants] = useState([])
+  const [tripsUpdated, setUpdated] = useState(false)
 
   useEffect(
     () => {
@@ -13,7 +14,7 @@ export const TripList = () => {
       .then ((data) => {
         getTrips(data)
       })
-    }, [])
+    }, [tripsUpdated])
 
   useEffect(
     () => {
@@ -23,6 +24,40 @@ export const TripList = () => {
         getParticipants(data)
       })
     }, [])
+
+  const completeTrip = (tripId) => {
+    fetch(tripsApi + `/?id=${tripId}`)
+      .then(res => res.json())
+      .then ((data) => {
+        data[0].completed = true
+        const tripCopy = {...data[0]}
+        fetch(tripsApi +`/${tripId}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(tripCopy)
+        })
+        setUpdated(!tripsUpdated)
+
+      })
+  }
+
+  const deleteTrip = (tripId) => {
+    fetch(tripsApi + `/?id=${tripId}`)
+    .then(res => res.json())
+    .then((data) => {
+      const trip = {...data[0]}
+      fetch(tripsApi + `/${tripId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(trip)
+      })
+      setUpdated(!tripsUpdated)
+    })
+  }
 
   return (
     <>
@@ -37,17 +72,17 @@ export const TripList = () => {
                       <p><b>Participants: </b></p>
                       {
                         participants.map((participant) => {
-                          if (participant.tripId === trip.id && participant.user.id != parseInt(localStorage.getItem("catch_user_id"))) {
+                          if (participant.tripId === trip.id && participant.user.id !== parseInt(localStorage.getItem("catch_user_id"))) {
                             return (
                               <p key={participant.user.id}>{participant.user.firstName + ` ` + participant.user.lastName}</p>
                             )
                           }
                         })
                       }
-                        <button value={trip.id}>Add</button>
                       {
-                        trip.completed ? <button>Edit</button> : <button>Complete</button>
+                        trip.completed ? <p><b>Status: </b>Completed</p> : <button value={trip.id} onClick={(e) => {completeTrip(parseInt(e.target.value))}}>Complete Trip</button>
                       }
+                      <button value={trip.id} onClick={(e) => {deleteTrip(parseInt(e.target.value))}}>Delete Trip</button>
                   </div>
                 )
           })

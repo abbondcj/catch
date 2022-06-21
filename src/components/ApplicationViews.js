@@ -1,12 +1,14 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Feed } from './feed/Feed'
+import { MyTrips } from './feed/MyTrips.js'
+import { PlanTrip } from './trips/PlanTrip.js'
 
 
 export const ApplicationViews = () => {
   return (
     <Routes>
-      <Route path="/feed" element={<Feed />}/>
+      <Route path="/my-trips" element={<MyTrips />} />
+      <Route path="/plan-trip" element={<PlanTrip />} />
     </Routes>
   )
 }

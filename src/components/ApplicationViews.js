@@ -9,6 +9,7 @@ export const ApplicationViews = () => {
   return (
     <>
       <Routes>
+        {/* <Route path="*" element={<MyTrips />} /> */}
         <Route path="/my-trips" element={<MyTrips />} />
         <Route path="/plan-trip" element={<PlanTrip />} />
         <Route path="/my-fish" element={<MyFish />} />

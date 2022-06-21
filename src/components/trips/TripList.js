@@ -4,11 +4,10 @@ import { tripsApi } from '../apiManager'
 export const TripList = () => {
   console.log("TripList rendered")
   const [trips, getTrips] = useState([])
-  const [userId, setUserId] = useState(parseInt(localStorage.getItem("catch_user_id")))
 
   useEffect(
     () => {
-      fetch(tripsApi + `/?userId=${userId}&&_expand=user`)
+      fetch(tripsApi + `/?userId=${parseInt(localStorage.getItem("catch_user_id"))}&&_expand=user`)
       .then(res => res.json())
       .then ((data) => {
         getTrips(data)

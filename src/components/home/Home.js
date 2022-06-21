@@ -15,10 +15,5 @@ export const Home = () => {
   } else {
     return <Navigate to="/login" />
   }
-
-
-  return (
-    <h1>Home</h1>
-  )
 }
 

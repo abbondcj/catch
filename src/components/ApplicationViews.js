@@ -7,11 +7,14 @@ import { PlanTrip } from './trips/PlanTrip.js'
 
 export const ApplicationViews = () => {
   return (
-    <Routes>
-      <Route path="/my-trips" element={<MyTrips />} />
-      <Route path="/plan-trip" element={<PlanTrip />} />
-      <Route path="/my-fish" element={<MyFish />} />
-    </Routes>
+    <>
+      <h1>Welcome back to Catch!</h1>
+      <Routes>
+        <Route path="/my-trips" element={<MyTrips />} />
+        <Route path="/plan-trip" element={<PlanTrip />} />
+        <Route path="/my-fish" element={<MyFish />} />
+      </Routes>
+    </>
   )
 }
 

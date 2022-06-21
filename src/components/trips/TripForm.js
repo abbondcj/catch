@@ -17,7 +17,7 @@ export const TripForm = () => {
   
     useEffect(
       () => {
-      fetch(statesApi)
+      fetch(statesApi + `/states`)
       .then(res => res.json())
       .then((data) => {
         setUnitedStates(data)

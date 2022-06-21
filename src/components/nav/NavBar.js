@@ -26,7 +26,7 @@ export const NavBar = () => {
             <Link className="navbar_link" to="/login"
                 onClick={
                     () => {
-                    localStorage.removeItem("fishBuddy_member")
+                    localStorage.removeItem("catch_user_id")
                 }
                 }
                 >Logout

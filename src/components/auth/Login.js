@@ -20,7 +20,7 @@ export const Login = () => {
     .then(exists => {
       if (exists) {
         localStorage.setItem("catch_user_id", exists.id)
-        navigate("/feed")
+        navigate("/my-trips")
       } else {
         existDialog.current.showModal()
       }

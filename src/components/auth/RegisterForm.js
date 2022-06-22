@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { statesApi, usersApi } from '../apiManager'
 
 export const RegisterForm = () => {
-  console.log("Register rendered")
 
   const [unitedStates, setUnitedStates] = useState([])
   const [stateCounties, setStateCounties] = useState([])
@@ -83,7 +82,6 @@ export const RegisterForm = () => {
                   bio : bio,
                   primaryMethod : primaryMethod
               }
-              console.log(createUser)
               fetch(usersApi, {
                 method: "POST",
                 headers: {

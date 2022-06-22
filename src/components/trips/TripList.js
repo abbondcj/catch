@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { participantsApi, tripsApi } from '../apiManager'
 
 export const TripList = () => {
-  console.log("TripList rendered")
   const [trips, getTrips] = useState([])
   const [tripParticipants, getParticipants] = useState([])
   const [tripsUpdated, setUpdated] = useState(false)

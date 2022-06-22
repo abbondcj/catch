@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './nav.css'
 
 export const NavBar = () => {
-  console.log("NavBar rendered")
 
   return (
     <ul className="navbar">

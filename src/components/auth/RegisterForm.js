@@ -81,7 +81,7 @@ export const RegisterForm = () => {
                   createDate : new Date(),
                   profilePhoto : userImage,
                   bio : bio,
-                  primaryMethod : primaryMethod,
+                  primaryMethod : primaryMethod
               }
               console.log(createUser)
               fetch(usersApi, {
@@ -111,7 +111,6 @@ export const RegisterForm = () => {
   return (
     <>
         <form className="form--register" onSubmit={handleRegister}>
-        <h1>Fish Buddy</h1>
         <h2>Register</h2>
         <fieldset>
         <label htmlFor="inputFirstName"> First Name </label>
@@ -158,7 +157,6 @@ export const RegisterForm = () => {
               required
               onChange={(e) => {setBirthday(e.target.value)}}></input>
         </fieldset>
-        
         <fieldset>
           <label> Location </label>
           <select 
@@ -185,7 +183,7 @@ export const RegisterForm = () => {
         </fieldset>
         <fieldset>
         <label htmlFor="inputBio"> Bio </label>
-        <input type="text"
+        <textarea type="text"
               className="form-control"
               placeholder="Bio (where you like to fish, what type of fishing is your favorite, etc.)"
               maxLength="300"

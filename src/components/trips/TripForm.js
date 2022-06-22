@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { statesApi, tripsApi } from '../apiManager'
+import { participantsApi, statesApi, tripsApi, usersApi } from '../apiManager'
 
 
 export const TripForm = () => {
+    const [users, getUsers] = useState([])
     const [unitedStates, setUnitedStates] = useState([])
     const [startDate, setStartDate] = useState("")
     const [startTime, setStartTime] = useState("")
@@ -12,6 +13,7 @@ export const TripForm = () => {
     const [state, setState] = useState ("")
     const [city, setCity] = useState("")
     const [waterSystem, setWaterSystem] = useState("")
+    const [participants, setParticipants] = useState([])
     const [tripPlan, setPlan] = useState("")
     const navigate = useNavigate()
   
@@ -21,6 +23,16 @@ export const TripForm = () => {
       .then(res => res.json())
       .then((data) => {
         setUnitedStates(data)
+      })
+      }, []
+    )
+
+    useEffect(
+      () => {
+      fetch(usersApi)
+      .then(res => res.json())
+      .then((data) => {
+        getUsers(data)
       })
       }, []
     )
@@ -47,12 +59,30 @@ export const TripForm = () => {
         },
         body: JSON.stringify(tripObj)
       }).then (() => {
-        navigate("/my-trips")
-  
-      })
-      
+        fetch(tripsApi)
+        .then(res => res.json())
+        .then((data) => {
+          const lastIndex = data.length - 1
+          const newTripId = data[lastIndex].id
+          for (const participantId of participants) {
+            const participantObj = {
+              tripId: newTripId,
+              userId: participantId
+            }
+            fetch(participantsApi, {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json"
+              },
+              body: JSON.stringify(participantObj)
+            })
+          }
+        })
+        .then(() => {
+          navigate("/my-trips")
+        })  
+      })      
     }
-  
   
     return (
       <form className="form--trip" onSubmit={newTripHandler}>
@@ -100,6 +130,37 @@ export const TripForm = () => {
                 <p> Water System </p>
                 <input type="text" placeholder="Water system" onChange={(e) => {setWaterSystem(e.target.value)}}></input>
             </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <h3>Participants</h3>
+          <div className="participantsDiv">
+            {
+              users.map((user) => {
+                if (user.id !== parseInt(localStorage.getItem("catch_user_id"))) {
+                  return (
+                    <div key={user.id}>
+                      <label htmlFor={user.firstName+user.lastName}>{user.firstName + ` ` + user.lastName}</label>
+                      <input type="checkbox" 
+                        key={user.id} value={user.id} 
+                        name={user.firstName+user.lastName}
+                        onChange={(e) => {
+                          if (participants.includes(parseInt(e.target.value))) {
+                            let participantIndex = participants.indexOf(parseInt(e.target.value))
+                            participants.splice(participantIndex)
+                            let copy = [...participants]
+                            setParticipants(copy)
+                          } else {
+                            participants.push(parseInt(e.target.value))
+                            let copy = [...participants]
+                            setParticipants(copy)
+                          }                        
+                        }}/>
+                    </div>
+                  )
+                }
+              })
+            }
           </div>
         </fieldset>
         <fieldset>

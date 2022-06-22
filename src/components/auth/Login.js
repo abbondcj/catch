@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { usersApi } from '../apiManager'
 
 export const Login = () => {
-  console.log("Login rendered")
   const [email, setEmail] = useState("")
   const existDialog = useRef()
   const navigate = useNavigate()

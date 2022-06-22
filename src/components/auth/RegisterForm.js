@@ -45,8 +45,7 @@ export const RegisterForm = () => {
   )
 
   const stateHandler = (e) => {
-    const choice = e.target.value.replace(" ","")
-    setState(choice)
+    setState(e.target.value)
     setCounty("")
   }
 

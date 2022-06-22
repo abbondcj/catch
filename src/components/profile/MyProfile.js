@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { statesApi, usersApi } from '../apiManager'
 
 export const MyProfile = () => {
@@ -16,7 +15,6 @@ export const MyProfile = () => {
   const [bio, setBio] = useState("")
   const [primaryMethod, setMethod] = useState("")
   const [userImage, setImage] = useState("")
-  const navigate = useNavigate()
 
 
   useEffect(
@@ -68,12 +66,6 @@ export const MyProfile = () => {
     const choice = e.target.value.replace(" ","")
     setState(choice)
     setCounty("")
-  }
-
-  const existingUsernameCheck = () => {
-    return fetch(usersApi + `?userName=${username}`)
-      .then(res => res.json())
-      .then(user => !!user.length)
   }
 
   const handleEditSubmit = (e) => {

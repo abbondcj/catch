@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
 import { fishApi, tripsApi } from '../apiManager'
 
 export const FishList = () => {
@@ -13,7 +12,6 @@ export const FishList = () => {
     const [fishImage, setImage] = useState("")
     const [tripId, setTripId] = useState(0)
     const [fishAdded, setFishAdded] = useState(false)
-    const navigate = useNavigate()
 
     useEffect(() => {
         fetch(tripsApi + `/?userId=${parseInt(localStorage.getItem("catch_user_id"))}`)

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { participantsApi, tripsApi } from '../apiManager'
 
 export const TripList = () => {
@@ -6,6 +7,7 @@ export const TripList = () => {
   const [trips, getTrips] = useState([])
   const [tripParticipants, getParticipants] = useState([])
   const [tripsUpdated, setUpdated] = useState(false)
+  const navigate = useNavigate()
 
 
   useEffect(
@@ -42,6 +44,7 @@ export const TripList = () => {
           body: JSON.stringify(tripCopy)
         })
         setUpdated(!tripsUpdated)
+        navigate("/my-fish")
 
       })
   }

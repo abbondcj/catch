@@ -9,7 +9,6 @@ export const RegisterForm = () => {
   const [stateCounties, setStateCounties] = useState([])
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [birthday ,setBirthday] = useState("")
   const [state, setState] = useState("")
@@ -55,50 +54,42 @@ export const RegisterForm = () => {
       .then(user => !!user.length)
   }
 
-  const existingUsernameCheck = () => {
-    return fetch(usersApi + `?userName=${username}`)
-      .then(res => res.json())
-      .then(user => !!user.length)
-  }
+  // const existingUsernameCheck = () => {
+  //   return fetch(usersApi + `?userName=${username}`)
+  //     .then(res => res.json())
+  //     .then(user => !!user.length)
+  // }
 
   const handleRegister = (e) => {
     e.preventDefault()
     existingUserCheck()
       .then((userExists) => {
         if (!userExists) {
-          existingUsernameCheck()
-          .then((userExists) => {
-            if (!userExists) {
-              const createUser = {
-                firstName : firstName,
-                  lastName : lastName,
-                  username : username,
-                  email : email,
-                  birthday : birthday,
-                  county : county,
-                  state : state,
-                  createDate : new Date(),
-                  profilePhoto : userImage,
-                  bio : bio,
-                  primaryMethod : primaryMethod
-              }
-              console.log(createUser)
-              fetch(usersApi, {
-                method: "POST",
-                headers: {
-                  "Content-type": "application/json"
-                },
-                body: JSON.stringify(createUser)
-              })
-              .then(res => res.json())
-              .then(createdUser => {
-                if (createdUser.hasOwnProperty("id")) {
-                  localStorage.setItem("catch_user_id", createdUser.id)
-                  navigate("/plan-trip")
-                }
-              })
-            } else {
-              window.alert("Username already exists")
+          const createUser = {
+            firstName : firstName,
+              lastName : lastName,
+              email : email,
+              birthday : birthday,
+              county : county,
+              state : state,
+              createDate : new Date(),
+              profilePhoto : userImage,
+              bio : bio,
+              primaryMethod : primaryMethod
+          }
+          console.log(createUser)
+          fetch(usersApi, {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json"
+            },
+            body: JSON.stringify(createUser)
+          })
+          .then(res => res.json())
+          .then(createdUser => {
+            if (createdUser.hasOwnProperty("id")) {
+              localStorage.setItem("catch_user_id", createdUser.id)
+              navigate("/plan-trip")
             }
           })
         } else {
@@ -129,16 +120,6 @@ export const RegisterForm = () => {
               required 
               maxLength="20"
               onChange={(e) => {setLastName(e.target.value)}}
-               />
-        </fieldset>
-        <fieldset>
-        <label htmlFor="inputUsername"> Username </label>
-        <input type="text"
-              className="form-control"
-              placeholder="Username"
-              required
-              maxLength="50"
-              onChange={(e) => {setUsername(e.target.value)}}
                />
         </fieldset>
         <fieldset>

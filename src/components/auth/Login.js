@@ -29,15 +29,13 @@ export const Login = () => {
   
   return (
     <>
-    <h1>Login</h1>
     <dialog className="dialog dialog--auth" ref={existDialog}>
                 <div>User does not exist</div>
                 <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
             </dialog>
-    <div id="landingPageBackground">
+    <div id="landingPageBackground" className="card">
       <form className="form--login" onSubmit={handleLogin}>
-        <h1>Fish Buddy Login</h1>
-        <h2>Please login</h2>
+        <h2>Catch Login</h2>
         <fieldset>
             <label htmlFor="inputEmail"> Email address </label>
             <input type="email"
@@ -48,7 +46,7 @@ export const Login = () => {
         </fieldset>
         <fieldset>
             <button type="submit">
-                Sign in
+                Sign In
             </button>
         </fieldset>
       </form>

@@ -134,12 +134,14 @@ export const TripForm = () => {
         </fieldset>
         <fieldset>
           <h3>Participants</h3>
-          <div className="participantsDiv">
+          <div className="tripFormParticipantsDiv">
             {
               users.map((user) => {
                 if (user.id !== parseInt(localStorage.getItem("catch_user_id"))) {
+                  let inviteUserImage = user.profilePhoto
                   return (
-                    <div key={user.id}>
+                    <div key={user.id} className="tripFormParticipantBox">
+                      <img src={inviteUserImage} alt=""></img>
                       <label htmlFor={user.firstName+user.lastName}>{user.firstName + ` ` + user.lastName}</label>
                       <input type="checkbox" 
                         key={user.id} value={user.id} 

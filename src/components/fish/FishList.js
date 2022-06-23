@@ -150,10 +150,11 @@ export const FishList = () => {
             <div className="fishListDisplay">
                 { 
                     fishes.map((fish) => {
+                        let fishImage = fish.image
                         return (
-                            <div key={fish.id}>
+                            <div key={fish.id} className="card" id="fishCard">
                                 <p>{fish.species}</p>
-                                
+                                <img className="fishImage" src={fishImage} alt=""></img>
                                 <p>Method: {fish.catchMethod}</p>
                                 <p>Location: {fish.trip.waterSystem}</p>
                             </div>

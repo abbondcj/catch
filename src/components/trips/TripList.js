@@ -71,7 +71,7 @@ export const TripList = () => {
         {
           trips.map((trip) => {
                 return (
-                  <div key={trip.id} className="card">
+                  <div key={trip.id} className="card" id="tripCard">
                       <div className="tripInfo">
                         <h3><b>{trip.waterSystem}</b></h3>
                         <p><b>Location: </b>{trip.city + `, ` + trip.state}</p>
@@ -79,12 +79,16 @@ export const TripList = () => {
                         <p><b>End Date: </b>{trip.endDate}</p>
                         <p><b>Participants: </b></p>
                       </div>
-                      <div className="tripParticipants">
+                      <div className="tripListParticipantsDiv">
                         {
                           tripParticipants.map((participant) => {
                             if (participant.tripId === trip.id && participant.user.id !== parseInt(localStorage.getItem("catch_user_id"))) {
+                              let participantImage = participant.user.profilePhoto
                               return (
-                                <p key={participant.user.id}>{participant.user.firstName + ` ` + participant.user.lastName}</p>
+                                <div key={participant.user.id} id="tripListParticipantBox">
+                                  <img src={participantImage} alt=""></img>
+                                  <p>{participant.user.firstName + ` ` + participant.user.lastName}</p>
+                                </div>
                               )
                             }
                           })

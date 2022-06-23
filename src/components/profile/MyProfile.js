@@ -6,7 +6,6 @@ export const MyProfile = () => {
   const [stateCounties, setStateCounties] = useState([])
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const [username, setUsername] = useState("")
   const [createDate, setCreateDate] = useState("")
   const [email, setEmail] = useState("")
   const [birthday ,setBirthday] = useState("")
@@ -24,7 +23,6 @@ export const MyProfile = () => {
         .then((data) => {
             setFirstName(data[0].firstName)
             setLastName(data[0].lastName)
-            setUsername(data[0].username)
             setEmail(data[0].email)
             setBirthday(data[0].birthday)
             setState(data[0].state)
@@ -73,7 +71,6 @@ export const MyProfile = () => {
     const userObj = {
         firstName : firstName,
         lastName : lastName,
-        username : username,
         email : email,
         birthday : birthday,
         county : userCounty,
@@ -126,10 +123,6 @@ export const MyProfile = () => {
                 value={lastName ? lastName : ""}
                 onChange={(e) => {setLastName(e.target.value)}}
                 />
-            </fieldset>
-            <fieldset>
-            <label htmlFor="inputUsername"> Username </label>
-            <p name="inputUsername">{username}</p>
             </fieldset>
             <fieldset>
             <label htmlFor="inputEmail"> Email address </label>

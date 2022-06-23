@@ -87,7 +87,7 @@ export const FishList = () => {
                             placeholder="Enter fish length (inches)"
                             required
                             value={length}
-                            onChange={(e) => {setLength(parseFloat(e.target.value))}} />
+                            onChange={(e) => {setLength(e.target.value)}} />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputWeight"> Weight </label>
@@ -96,7 +96,7 @@ export const FishList = () => {
                             placeholder="Enter fish weight (pounds)"
                             required
                             value={weight}
-                            onChange={(e) => {setWeight(parseFloat(e.target.value))}} />
+                            onChange={(e) => {setWeight(e.target.value)}} />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputCatchMethod"> Catch Method </label>
@@ -144,6 +144,15 @@ export const FishList = () => {
                     </fieldset>
                     <fieldset>
                         <button type="submit">Add Fish</button>
+                        <button onClick={() => {
+                            setSpecies("")
+                            setLength("")
+                            setWeight("")
+                            setMethod("")
+                            setSummary("")
+                            setImage("")
+                            setTripId(0)
+                        }}>Cancel</button>
                     </fieldset>
                 </form>
             </div>
@@ -153,7 +162,7 @@ export const FishList = () => {
                         let fishImage = fish.image
                         return (
                             <div key={fish.id} className="card" id="fishCard">
-                                <p>{fish.species}</p>
+                                <h4>{fish.species + ` -- ` + fish.length + `" -- ` + fish.weight + `lbs`}</h4>
                                 <img className="fishImage" src={fishImage} alt=""></img>
                                 <p>Method: {fish.catchMethod}</p>
                                 <p>Location: {fish.trip.waterSystem}</p>

@@ -180,8 +180,10 @@ export const MyProfile = () => {
             </fieldset>
             <fieldset>
             <label> Preferred Method </label>
-            Fly Fishing {primaryMethod && primaryMethod === "Fly fishing" ? <input name="method" type="radio" checked onChange={(e) => {setMethod("Fly fishing")}}></input> : <input name="method" type="radio" onChange={(e) => {setMethod("Fly fishing")}}></input>}
-            Spin Fishing {primaryMethod && primaryMethod === "Spin fishing" ? <input name="method" type="radio" checked onChange={(e) => {setMethod("Spin fishing")}}></input> : <input name="method" type="radio" onChange={(e) => {setMethod("Spin fishing")}}></input>}
+                <p>Fly fishing</p>
+                {primaryMethod && primaryMethod === "Fly fishing" ? <input name="method" type="radio" checked onChange={(e) => {setMethod("Fly fishing")}}></input> : <input name="method" type="radio" onChange={(e) => {setMethod("Fly fishing")}}></input>}
+                <p>Spin fishing</p>
+                {primaryMethod && primaryMethod === "Spin fishing" ? <input name="method" type="radio" checked onChange={(e) => {setMethod("Spin fishing")}}></input> : <input name="method" type="radio" onChange={(e) => {setMethod("Spin fishing")}}></input>}
             </fieldset>
             <fieldset>
                 <button type="submit">

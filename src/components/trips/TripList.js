@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { participantsApi, tripsApi } from '../apiManager'
+import './trips.css'
 
 export const TripList = () => {
   console.log("TripList rendered")
@@ -55,7 +56,7 @@ export const TripList = () => {
                 return (
                   <div key={trip.id} className="card" id="tripCard">
                       <div className="tripInfo">
-                        <h3><b>{trip.waterSystem}</b></h3>
+                        <h3 id="tripTitle"><b>{trip.waterSystem}</b></h3>
                         <p><b>Location: </b>{trip.city + `, ` + trip.state}</p>
                         <p><b>Start Date: </b>{trip.startDate}</p>
                         <p><b>End Date: </b>{trip.endDate}</p>
@@ -68,7 +69,7 @@ export const TripList = () => {
                               let participantImage = participant.user.profilePhoto
                               return (
                                 <div key={participant.user.id} id="tripListParticipantBox">
-                                  <img src={participantImage} alt=""></img>
+                                  <img id="participantImg" src={participantImage} alt=""></img>
                                   <p>{participant.user.firstName + ` ` + participant.user.lastName}</p>
                                 </div>
                               )

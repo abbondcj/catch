@@ -8,7 +8,6 @@ export const Home = () => {
     return (
     <>
         <NavBar />
-        <h1>Catch</h1>
         <ApplicationViews />
     </>
     )

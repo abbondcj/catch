@@ -1,0 +1,29 @@
+.myProfileContainer {
+    display: flex;
+    margin-left: 20%;
+    margin-right: 20%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5%;
+}
+
+.myProfileContainer img {
+    width: 300px;
+}
+
+.profilePhotoDiv {
+    width: 50%;
+}
+
+.myProfileForm {
+    width: 50%;
+}
+
+.myProfileForm input, select {
+    width: fit-content;
+    margin-left: 1%;
+}
+
+#profileLabel {
+    font-weight: bold;
+}

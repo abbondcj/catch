@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './nav.css'
-
 export const NavBar = () => {
   console.log("NavBar rendered")
 
   return (
+    <>
     <ul className="navbar">
         <li className="navbar__item">
             <Link className="navbar__link" to="/my-trips">My Trips</Link>
@@ -33,6 +33,7 @@ export const NavBar = () => {
             </Link>
         </li>
     </ul>
+    </>
   )
 }
 

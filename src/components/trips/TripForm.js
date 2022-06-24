@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { participantsApi, statesApi, tripsApi, usersApi } from '../apiManager'
-
+import './tripForm.css'
 
 export const TripForm = () => {
     const [users, getUsers] = useState([])
@@ -112,7 +112,7 @@ export const TripForm = () => {
           <h3>Location</h3>
           <div className="locationContainer">
             <div className="stateContainer">
-                <p> State </p>
+                <label>State</label>
                 <select 
                 required
                 onChange={(e) => {setState(e.target.value)}}>
@@ -123,11 +123,11 @@ export const TripForm = () => {
                 </select>
             </div>
             <div className="cityContainer">
-                <p> City </p>
+                <label>City</label>
                 <input type="text" name="city" max={100} placeholder="City" onChange={(e) => {setCity(e.target.value)}}></input>
             </div>
             <div className="waterSystemContainer">
-                <p> Water System </p>
+                <label>Water System</label>
                 <input type="text" placeholder="Water system" onChange={(e) => {setWaterSystem(e.target.value)}}></input>
             </div>
           </div>

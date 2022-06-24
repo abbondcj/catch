@@ -4,7 +4,7 @@ import { TripList } from '../trips/TripList'
 export const MyTrips = () => {
   return (
     <>
-      <h1>My Trips</h1>
+      <h1 id="pageTitle">My Trips</h1>
       <TripList />
     </>
   )

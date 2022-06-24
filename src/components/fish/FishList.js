@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import { fishApi, tripsApi } from '../apiManager'
+import './fishList.css'
 
 export const FishList = () => {
     const [fishes, getFish] = useState([])
@@ -181,7 +182,9 @@ export const FishList = () => {
                                 <h4>{fish.species + ` -- ` + fish.length + `" -- ` + fish.weight + `lbs`}</h4>
                                 <img className="fishImage" src={fishImage} alt=""></img>
                                 <p>Method: {fish.catchMethod}</p>
-                                <p>Location: {fish.trip.waterSystem}</p>
+                                <p>Summary: {fish.summary}</p>
+                                <p>Location: {fish.trip.waterSystem + ` -- ` + fish.trip.state}</p>
+                                <p>Date: {fish.trip.startDate}</p>
                                 <button value={fish.id} onClick={(e) => {deleteFish(parseInt(e.target.value))}}>Delete Fish</button>
                             </div>
                         )

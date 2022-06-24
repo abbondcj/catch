@@ -65,6 +65,22 @@ export const FishList = () => {
 
     }
 
+    const deleteFish = (fishId) => {
+        fetch(fishApi + `/?id=${fishId}`)
+        .then(res => res.json())
+        .then((data) => {
+          const fish = {...data[0]}
+          fetch(fishApi + `/${fishId}`, {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json"
+            },
+            body: JSON.stringify(fish)
+          })
+          setFishAdded(!fishAdded)
+        })
+      }
+
 
 
     return (
@@ -166,6 +182,7 @@ export const FishList = () => {
                                 <img className="fishImage" src={fishImage} alt=""></img>
                                 <p>Method: {fish.catchMethod}</p>
                                 <p>Location: {fish.trip.waterSystem}</p>
+                                <button value={fish.id} onClick={(e) => {deleteFish(parseInt(e.target.value))}}>Delete Fish</button>
                             </div>
                         )
                     })   

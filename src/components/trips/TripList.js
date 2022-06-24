@@ -47,22 +47,6 @@ export const TripList = () => {
       })
   }
 
-  const deleteTrip = (tripId) => {
-    fetch(tripsApi + `/?id=${tripId}`)
-    .then(res => res.json())
-    .then((data) => {
-      const trip = {...data[0]}
-      fetch(tripsApi + `/${tripId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify(trip)
-      })
-      setUpdated(!tripsUpdated)
-    })
-  }
-
 
   return (
     <>
@@ -95,8 +79,10 @@ export const TripList = () => {
                       {
                         trip.completed ? <p><b>Status: </b>Completed</p> : <button value={trip.id} onClick={(e) => {completeTrip(parseInt(e.target.value))}}>Complete Trip</button>
                       }
-                      <button value={trip.id} onClick={(e) => {deleteTrip(parseInt(e.target.value))}}>Delete Trip</button>
-                      <button onClick={() => {navigate("/my-fish")}}>Add a Catch</button>
+                      {
+                        trip.completed ? <button onClick={() => {navigate("/my-fish")}}>Add a Catch</button> : <></>
+
+                      }
                   </div>
                 )
           })

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { statesApi, usersApi } from '../apiManager'
+import './register.css'
+
 
 export const RegisterForm = () => {
   console.log("Register rendered")
@@ -99,11 +101,10 @@ export const RegisterForm = () => {
   }
 
   return (
-    <>
+      <div id="registerContainer">
         <form className="form--register" onSubmit={handleRegister}>
-        <h2>Register</h2>
         <fieldset>
-        <label htmlFor="inputFirstName"> First Name </label>
+        <label id="profileLabel" htmlFor="inputFirstName"> First Name </label>
         <input type="text"
               className="form-control"
               placeholder="First name"
@@ -113,7 +114,7 @@ export const RegisterForm = () => {
                />
         </fieldset>
         <fieldset>
-        <label htmlFor="inputLastName"> Last Name </label>
+        <label id="profileLabel" htmlFor="inputLastName"> Last Name </label>
         <input type="text"
               className="form-control"
               placeholder="Last name"
@@ -123,7 +124,7 @@ export const RegisterForm = () => {
                />
         </fieldset>
         <fieldset>
-          <label htmlFor="inputEmail"> Email address </label>
+          <label id="profileLabel" htmlFor="inputEmail"> Email address </label>
           <input type="email"
               className="form-control"
               placeholder="Email address"
@@ -132,13 +133,13 @@ export const RegisterForm = () => {
               onChange={(e) => {setEmail(e.target.value)}} />
         </fieldset>
         <fieldset>
-          <label htmlFor="inputBirthday"> Birthday </label>
+          <label id="profileLabel" htmlFor="inputBirthday"> Birthday </label>
           <input type="date" 
               required
               onChange={(e) => {setBirthday(e.target.value)}}></input>
         </fieldset>
         <fieldset>
-          <label> Location </label>
+          <label id="profileLabel"> Location </label>
           <select 
             required
             onChange={stateHandler}>
@@ -162,7 +163,7 @@ export const RegisterForm = () => {
           }
         </fieldset>
         <fieldset>
-        <label htmlFor="inputBio"> Bio </label>
+        <label id="profileLabel" htmlFor="inputBio"> Bio </label>
         <textarea type="text"
               className="form-control"
               placeholder="Bio (where you like to fish, what type of fishing is your favorite, etc.)"
@@ -171,22 +172,28 @@ export const RegisterForm = () => {
                />
         </fieldset>
         <fieldset>
-        <label htmlFor="inputProfilePhoto"> Profile photo </label>
-        <input type="url" onChange={(e) => {setImage(e.target.value)}}/>
+        <label id="profileLabel" htmlFor="inputProfilePhoto"> Profile photo </label>
+        <input placeholder="Paste link to image" type="url" onChange={(e) => {setImage(e.target.value)}}/>
         </fieldset>
         <fieldset>
-          <label> Preferred Method </label>
-          Fly Fishing<input name="method" type="radio" onChange={(e) => {setMethod("Fly fishing")}}></input>
-          Spin Fishing<input name="method" type="radio" onChange={(e) => {setMethod("Spin fishing")}}></input>
+          <label id="profileLabel"> Preferred Method </label>
+          <br></br>
+          <label>Fly Fishing</label>
+          <input name="method" type="radio" onChange={(e) => {setMethod("Fly fishing")}}></input>
+          <br></br>
+          <label>Spin fishing</label>
+          <input name="method" type="radio" onChange={(e) => {setMethod("Spin fishing")}}></input>
         </fieldset>
         <fieldset>
             <button type="submit">
                 Register
             </button>
         </fieldset>
-      </form>
-        <Link to="/login">Cancel</Link>
-      </>
+        </form>
+        <div>
+          <Link to="/login">Cancel</Link>
+        </div>
+      </div>
   )
 }
 

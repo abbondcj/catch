@@ -4,7 +4,7 @@ import { TripForm } from './TripForm'
 export const PlanTrip = () => {
   return (
     <>
-    <h1>Plan A Trip</h1>
+    <h1 id="pageTitle">Plan a Trip</h1>
     <TripForm />
     </>
   )

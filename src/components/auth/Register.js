@@ -6,7 +6,7 @@ export const Register = () => {
 
   return (
     <>
-      <h3>Register</h3>
+      <h3 id="pageTitle">Register Catch User</h3>
       <RegisterForm />
     </>
   )

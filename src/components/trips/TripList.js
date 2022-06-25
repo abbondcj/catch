@@ -4,7 +4,6 @@ import { participantsApi, tripsApi } from '../apiManager'
 import './trips.css'
 
 export const TripList = () => {
-  console.log("TripList rendered")
   const [trips, getTrips] = useState([])
   const [tripParticipants, getParticipants] = useState([])
   const [tripsUpdated, setUpdated] = useState(false)

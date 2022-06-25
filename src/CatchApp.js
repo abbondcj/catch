@@ -5,7 +5,6 @@ import { Register } from "./components/auth/Register";
 import { Home } from "./components/home/Home";
 import './App.css'
 
-
 export const CatchApp = () => {
   return (
     <Routes>

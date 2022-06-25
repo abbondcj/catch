@@ -4,7 +4,6 @@ import { usersApi } from '../apiManager'
 import './login.css'
 
 export const Login = () => {
-  console.log("Login rendered")
   const [email, setEmail] = useState("")
   const existDialog = useRef()
   const navigate = useNavigate()

@@ -5,8 +5,6 @@ import './register.css'
 
 
 export const RegisterForm = () => {
-  console.log("Register rendered")
-
   const [unitedStates, setUnitedStates] = useState([])
   const [stateCounties, setStateCounties] = useState([])
   const [firstName, setFirstName] = useState("")
@@ -56,12 +54,6 @@ export const RegisterForm = () => {
       .then(user => !!user.length)
   }
 
-  // const existingUsernameCheck = () => {
-  //   return fetch(usersApi + `?userName=${username}`)
-  //     .then(res => res.json())
-  //     .then(user => !!user.length)
-  // }
-
   const handleRegister = (e) => {
     e.preventDefault()
     existingUserCheck()
@@ -79,7 +71,6 @@ export const RegisterForm = () => {
               bio : bio,
               primaryMethod : primaryMethod
           }
-          console.log(createUser)
           fetch(usersApi, {
             method: "POST",
             headers: {
